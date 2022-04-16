@@ -22,12 +22,17 @@ class EntryDAO extends DAO{
     function insert($data) {
         
         try {
-            $sql = 'INSERT INTO entries(name, description) 
-                    VALUES (:name,:description)';
+            $sql = "INSERT INTO public.entries
+                    (name, description, type, amount, date, paid, category_id)
+                    VALUES(:name, :description, :type, :amount, :date, :paid, :category_id)";
 
             $stmt = $GLOBALS['conexao']->prepare($sql);
             $stmt->bindValue(':name', $data['name']);
             $stmt->bindValue(':description', $data['description']);
+            $stmt->bindValue(':type', $data['type']);
+            $stmt->bindValue(':amount', $data['amount']);
+            $stmt->bindValue(':paid', $data['paid']);
+            $stmt->bindValue(':category_id', $data['categoryId']);
             $stmt->execute();
 
             App_Response::getResponse(200);
@@ -48,12 +53,20 @@ class EntryDAO extends DAO{
             $sql = 'UPDATE entries SET  
                     name = :name,
                     description = :description 
+                    type = :type 
+                    amount = :amount 
+                    paid = :paid 
+                    category_id = :category_id 
                     WHERE id = :id';
 
             $stmt = $GLOBALS['conexao']->prepare($sql);
             $stmt->bindValue(':id', $id);
             $stmt->bindValue(':name', $data['name']);
             $stmt->bindValue(':description', $data['description']);
+            $stmt->bindValue(':type', $data['type']);
+            $stmt->bindValue(':amount', $data['amount']);
+            $stmt->bindValue(':paid', $data['paid']);
+            $stmt->bindValue(':category_id', $data['categoryId']);
             $stmt->execute();
 
             App_Response::getResponse(200);
