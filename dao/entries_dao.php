@@ -2,18 +2,18 @@
 
 require_once "conexao.php";
 
-class ClienteDAO extends DAO{
+class EntryDAO extends DAO{
         
     function findAll() {
 
-        $query="SELECT * FROM clientes order by nome";
+        $query="SELECT * FROM entries order by name";
         $response = parent::getResultSetArray($query);
         return $response;
     
     }
 
     function findById($id){
-        $query="SELECT * FROM clientes where id = $id order by nome";
+        $query="SELECT * FROM entries where id = $id order by name";
         $response = parent::getResultSetArray($query);
         return $response;
     
@@ -22,12 +22,12 @@ class ClienteDAO extends DAO{
     function insert($data) {
         
         try {
-            $sql = 'INSERT INTO clientes(nome, descricao) 
-                    VALUES (:nome,:descricao)';
+            $sql = 'INSERT INTO entries(name, description) 
+                    VALUES (:name,:description)';
 
             $stmt = $GLOBALS['conexao']->prepare($sql);
-            $stmt->bindValue(':nome', $data['nome']);
-            $stmt->bindValue(':descricao', $data['descricao']);
+            $stmt->bindValue(':name', $data['name']);
+            $stmt->bindValue(':description', $data['description']);
             $stmt->execute();
 
             App_Response::getResponse(200);
@@ -45,15 +45,15 @@ class ClienteDAO extends DAO{
 
     function update($id, $data) {
         try {
-            $sql = 'UPDATE clientes SET  
-                    nome = :nome,
-                    descricao = :descricao 
+            $sql = 'UPDATE entries SET  
+                    name = :name,
+                    description = :description 
                     WHERE id = :id';
 
             $stmt = $GLOBALS['conexao']->prepare($sql);
             $stmt->bindValue(':id', $id);
-            $stmt->bindValue(':nome', $data['nome']);
-            $stmt->bindValue(':descricao', $data['descricao']);
+            $stmt->bindValue(':name', $data['name']);
+            $stmt->bindValue(':description', $data['description']);
             $stmt->execute();
 
             App_Response::getResponse(200);
@@ -70,7 +70,7 @@ class ClienteDAO extends DAO{
 
     function delete($id) {
         try {
-            $sql = 'DELETE FROM clientes WHERE id = :id';
+            $sql = 'DELETE FROM entries WHERE id = :id';
 
             $stmt = $GLOBALS['conexao']->prepare($sql);
             $stmt->bindValue(':id', $id);
