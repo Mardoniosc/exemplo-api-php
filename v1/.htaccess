@@ -1,8 +1,12 @@
 RewriteEngine On # Turn on the rewriting engine
 
-# API Cliente
-RewriteRule ^cliente/?$ cliente.php [NC,L]
-RewriteRule ^cliente/([0-9]+)/?$ cliente.php?id=$1 [NC,L]
+# API Categorias
+RewriteRule ^categories/?$ categories.php [NC,L]
+RewriteRule ^categories/([0-9]+)/?$ categories.php?id=$1 [NC,L]
+
+# API Entradas
+RewriteRule ^entries/?$ entries.php [NC,L]
+RewriteRule ^entries/([0-9]+)/?$ entries.php?id=$1 [NC,L]
 
 ###### Exemplos de uso ######
 # API Particao
