@@ -31,8 +31,9 @@ class EntryDAO extends DAO{
             $stmt->bindValue(':description', $data['description']);
             $stmt->bindValue(':type', $data['type']);
             $stmt->bindValue(':amount', $data['amount']);
-            $stmt->bindValue(':paid', $data['paid']);
-            $stmt->bindValue(':category_id', $data['categoryId']);
+            $stmt->bindValue(':date', $data['date']);
+            $stmt->bindValue(':paid', $data['paid'] ? "true" : "false");
+            $stmt->bindValue(':category_id', $data['category_id']);
             $stmt->execute();
 
             App_Response::getResponse(200);
@@ -52,10 +53,11 @@ class EntryDAO extends DAO{
         try {
             $sql = 'UPDATE entries SET  
                     name = :name,
-                    description = :description 
-                    type = :type 
-                    amount = :amount 
-                    paid = :paid 
+                    description = :description, 
+                    type = :type, 
+                    amount = :amount, 
+                    date = :date,
+                    paid = :paid,
                     category_id = :category_id 
                     WHERE id = :id';
 
@@ -65,8 +67,9 @@ class EntryDAO extends DAO{
             $stmt->bindValue(':description', $data['description']);
             $stmt->bindValue(':type', $data['type']);
             $stmt->bindValue(':amount', $data['amount']);
-            $stmt->bindValue(':paid', $data['paid']);
-            $stmt->bindValue(':category_id', $data['categoryId']);
+            $stmt->bindValue(':date', $data['date']);
+            $stmt->bindValue(':paid', $data['paid'] ? "true" : "false");
+            $stmt->bindValue(':category_id', $data['category_id']);
             $stmt->execute();
 
             App_Response::getResponse(200);
