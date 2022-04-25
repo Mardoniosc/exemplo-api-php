@@ -2,7 +2,7 @@
 //======================================================================
 // PARAMENTROS DO BANCO DE DADOS - POSTGRESQL + PDO PARA O WEBSERVICES
 //======================================================================
-define('HOST_DB', 'localhost');
+define('HOST_DB', '192.168.0.13');
 define('PORT', '5432');
 define('DBNAME', 'finansys_php');
 define('USER_DB', 'docker');

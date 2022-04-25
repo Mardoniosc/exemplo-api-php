@@ -1,8 +1,11 @@
 <?php
 
 require_once ("../util/app_response.php");
+require_once ("../util/cors.php");
 require_once ("../dao/conexao.php");
 require_once ("../dao/entries_dao.php");
+
+cors();
 
 $request_method=$_SERVER["REQUEST_METHOD"];
 switch($request_method){
